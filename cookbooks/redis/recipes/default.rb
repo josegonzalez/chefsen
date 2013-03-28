@@ -4,6 +4,13 @@ service "redis" do
   supports [:enable, :start, :restart, :stop]
 end
 
+[ node[:redis][:configdir], node[:redis][:dir] , node[:redis][:logdir] ].each do |dir|
+  recursive_directories [ dir ] do
+    owner node[:current_user]
+    recursive true
+  end
+end
+
 template '/Library/LaunchDaemons/homebrew.mxcl.redis.plist' do
   action :create
   group 'wheel'
@@ -11,10 +18,6 @@ template '/Library/LaunchDaemons/homebrew.mxcl.redis.plist' do
   mode 0644
   source 'homebrew.mxcl.redis.plist.erb'
   variables(node[:redis])
-end
-
-recursive_directories [ node[:redis][:configdir], node[:redis][:dir] , node[:redis][:logdir] ] do
-  recursive true
 end
 
 template node[:redis][:configfile] do

@@ -4,6 +4,13 @@ service "mongodb" do
   supports [:enable, :start, :restart, :stop]
 end
 
+[ node[:mongodb][:dbpath] , node[:mongodb][:logdir] ].each do |dir|
+  recursive_directories [ dir ] do
+    owner node[:current_user]
+    recursive true
+  end
+end
+
 template '/Library/LaunchDaemons/homebrew.mxcl.mongodb.plist' do
   action :create
   group 'wheel'
@@ -11,10 +18,6 @@ template '/Library/LaunchDaemons/homebrew.mxcl.mongodb.plist' do
   mode 0644
   source 'homebrew.mxcl.mongodb.plist.erb'
   variables(node[:mongodb])
-end
-
-recursive_directories [ node[:mongodb][:dbpath] , node[:mongodb][:logdir] ] do
-  recursive true
 end
 
 template node[:mongodb][:configfile] do

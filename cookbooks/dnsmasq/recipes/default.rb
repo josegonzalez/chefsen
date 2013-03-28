@@ -3,8 +3,11 @@ service "dnsmasq" do
   supports [:enable, :start, :restart, :stop]
 end
 
-recursive_directories [ node[:dnsmasq][:configdir], node[:dnsmasq][:logdir] ] do
-  recursive true
+[ node[:dnsmasq][:configdir], node[:dnsmasq][:logdir] ].each do |dir|
+  recursive_directories [ dir ] do
+    owner node[:current_user]
+    recursive true
+  end
 end
 
 template node[:dnsmasq][:configfile] do
