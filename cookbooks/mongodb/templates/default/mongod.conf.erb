@@ -1,0 +1,9 @@
+# Store data in /usr/local/var/mongodb instead of the default /data/db
+dbpath = <%= @dbpath %>
+
+# Append logs to /usr/local/var/log/mongodb/mongo.log
+logpath = <%= @logpath %>
+logappend = <%= @logappend %>
+
+# Only accept local connections
+bind_ip = <%= @bind_ip %>
