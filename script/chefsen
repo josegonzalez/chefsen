@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+DIR=`pwd`
+sudo /usr/bin/chef-solo -c $DIR/solo.rb -j $DIR/mac.json --force-logger

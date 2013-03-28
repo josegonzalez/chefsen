@@ -1,0 +1,7 @@
+maintainer        "Jose Diaz-Gonzalez"
+maintainer_email  "chefsen@josediazgonzalez.com"
+license           "MIT"
+description       "Install 1password"
+version           "1.0.0"
+supports          "mac_os_x"
+depends           "mac_os_x"
