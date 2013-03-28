@@ -12,3 +12,5 @@ raise "Missing configuration hash in dna" if config.nil?
 username = config.fetch("username")
 raise "No username set in config" unless username
 ENV['CHEF_USERNAME'] = username
+
+ENV['HOMEBREW_PREFIX'] = '/usr/local'
