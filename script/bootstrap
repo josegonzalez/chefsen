@@ -1,5 +1,6 @@
-mkdir ../tmp
-cd ../tmp
+cd ~
+mkdir tmp
+cd tmp
 # download Xcode
 curl -O https://dl.dropbox.com/s/8mst7ep4i7h8fna/xcode46cltools_10_86938131a.dmg
 hdiutil mount xcode460417218a.dmg
