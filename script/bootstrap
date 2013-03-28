@@ -15,9 +15,5 @@ sudo gem update --system --verbose
 sudo gem install chef chef-sudo
 sudo mkdir -p /usr/local
 sudo chown -R `whoami`:staff /usr/local
+cd ~
 mkdir -p chef/cache && cd chef
-mkdir cookbooks && cd cookbooks
-curl -L https://github.com/opscode-cookbooks/homebrew/archive/1.3.2.tar.gz | tar zx && mv homebrew-1.3.2 homebrew
-curl -L https://github.com/jtimberman/mac_os_x-cookbook/archive/master.tar.gz | tar zx && mv mac_os_x-cookbook-master mac_os_x
-curl -L https://github.com/opscode-cookbooks/dmg/archive/1.1.0.tar.gz | tar zx && mv dmg-1.1.0 dmg
-cd ..
