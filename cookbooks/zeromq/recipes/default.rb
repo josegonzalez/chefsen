@@ -1,1 +1,3 @@
-Chef::Log.info("Unimplemented zeromq recipe")
+package 'zeromq' do
+  action :install
+end
