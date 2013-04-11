@@ -20,9 +20,12 @@ node[:sublime_text][:packages].each do |package|
   end
 end
 
-template File.expand_path("Preferences.sublime-settings", File.join(sublime_user_path)) do
+sublime_user_file_path = File.expand_path("Preferences.sublime-settings", File.join(sublime_user_path))
+
+template sublime_user_file_path do
   source "sublime_text-Preferences.sublime-settings.erb"
   action :create
+  not_if { JSON.parse(File.open(sublime_user_file_path).read) == node[:sublime_text][:settings] }
 end
 
 package_dir = "#{node[:user_home]}/Library/Application Support/Sublime Text 2/Installed Packages"
