@@ -13,7 +13,7 @@ sudo installer -pkg '/Volumes/Command Line Tools (Mountain Lion)/Command Line To
 hdiutil unmount '/Volumes/Xcode/'
 hdiutil unmount '/Volumes/Command Line Tools (Mountain Lion)/'
 sudo gem update --system --verbose
-sudo gem install chef chef-sudo
+sudo gem install chef chef-sudo --no-ri --no-rdoc
 sudo mkdir -p /usr/local
 sudo chown -R `whoami`:staff /usr/local
 cd ~
