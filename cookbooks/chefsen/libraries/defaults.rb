@@ -13,7 +13,7 @@ class Chef
       def initialize(name, run_context=nil)
         initialize_directory(name, run_context)
         @owner = ENV['CHEF_USERNAME']
-        @group = 'staff'
+        @group = ENV['CHEF_GROUP']
       end
     end
   end
@@ -26,7 +26,7 @@ class Chef
       def initialize(name, run_context=nil)
         initialize_execute(name, run_context)
         @user = ENV['CHEF_USERNAME']
-        @group = 'staff'
+        @group = ENV['CHEF_GROUP']
       end
     end
   end
@@ -39,7 +39,7 @@ class Chef
       def initialize(name, run_context=nil)
         initialize_file(name, run_context)
         @owner = ENV['CHEF_USERNAME']
-        @group = 'staff'
+        @group = ENV['CHEF_GROUP']
       end
     end
   end
@@ -52,7 +52,7 @@ class Chef
       def initialize(name, run_context=nil)
         initialize_git(name, run_context)
         @user = ENV['CHEF_USERNAME']
-        @group = 'staff'
+        @group = ENV['CHEF_GROUP']
       end
     end
   end
@@ -65,7 +65,7 @@ class Chef
       def initialize(name, run_context=nil)
         initialize_link(name, run_context)
         @owner = ENV['CHEF_USERNAME']
-        @group = 'staff'
+        @group = ENV['CHEF_GROUP']
       end
     end
   end
@@ -78,7 +78,7 @@ class Chef
       def initialize(name, run_context=nil)
         initialize_remote_file(name, run_context)
         @owner = ENV['CHEF_USERNAME']
-        @group = 'staff'
+        @group = ENV['CHEF_GROUP']
       end
     end
   end
@@ -91,7 +91,7 @@ class Chef
       def initialize(name, run_context=nil)
         initialize_template(name, run_context)
         @owner = ENV['CHEF_USERNAME']
-        @group = 'staff'
+        @group = ENV['CHEF_GROUP']
       end
     end
   end

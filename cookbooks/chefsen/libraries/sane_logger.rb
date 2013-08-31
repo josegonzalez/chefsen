@@ -11,9 +11,7 @@ class Chef
 
     # Shit up some bs from dmg_package and regurgitated things
     def self.info(msg=nil, &block)
-      if msg =~ /^Already installed/
-        debug(msg, &block)
-      elsif msg =~ /already initialized/
+      if msg =~ /^Already installed/ || msg =~ /already initialized/
         debug(msg, &block)
       else
         super
