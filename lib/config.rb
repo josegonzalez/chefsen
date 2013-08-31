@@ -1,16 +1,8 @@
-dna_file = nil
-ARGV.each_with_index {|val, index| dna_file = ARGV[index + 1] if val == "-j" }
-raise "No dna file specified with the -j flag" if dna_file.nil?
+_username = ENV.fetch('SUDO_USER', ENV.fetch('USER', nil))
+raise 'You should not run as root' if _username == 'root'
+raise 'Invalid user running this command' if _username.nil?
 
-dna = []
-File.open(dna_file, 'r').each {|l| dna << l }
-dna = JSON.load(dna.join("\n"))
-
-config = dna.fetch('config')
-raise "Missing configuration hash in dna" if config.nil?
-
-username = config.fetch("username")
-raise "No username set in config" unless username
-ENV['CHEF_USERNAME'] = username
+ENV['CHEF_USERNAME'] = _username
+ENV['CHEF_GROUP'] = 'staff'
 
 ENV['HOMEBREW_PREFIX'] = '/usr/local'

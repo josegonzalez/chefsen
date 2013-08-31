@@ -1,4 +1,23 @@
 #!/usr/bin/env bash
 
+/usr/sbin/diskutil coreStorage info / > /dev/null 2>&1
+OUT=$?
+if [ $OUT -ne 0 ];then
+   echo "Please enable full disk encryption and try again"
+   # exit $OUT
+fi
+
 DIR=`pwd`
-sudo /usr/bin/chef-solo -c $DIR/solo.rb -j $DIR/mac.json --force-logger
+[ -z "$SUDO_USER" ] && CURRENT_USER="$USER"
+[ -z "$USER" ] && CURRENT_USER="$SUDO_USER"
+
+echo "Creating required directories"
+
+mkdir -p $DIR/backup
+mkdir -p  $DIR/cache
+
+echo "Running chefsen bootstrap"
+/usr/bin/chef-solo -c $DIR/solo.rb -j $DIR/bootstrap.json --force-logger
+
+echo "Running chefsen against your dna.json"
+sudo /usr/bin/chef-solo -c $DIR/solo.rb -j $DIR/dna.json --force-logger
