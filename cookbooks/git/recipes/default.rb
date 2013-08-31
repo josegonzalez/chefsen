@@ -3,8 +3,11 @@ Chef::Log.info("Incomplete git recipe")
 $home = "/Users/#{ENV['CHEF_USERNAME']}"
 
 package 'git' do
+  provider Chef::Provider::Package::Homebrew
   not_if 'brew list|grep git'
 end
+
+directory node[:git][:configdir]
 
 #   file { $git::config::credentialhelper:
 #     ensure => file
