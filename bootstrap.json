@@ -1,0 +1,6 @@
+{
+  "run_list": [
+    "recipe[chefsen::preflight]",
+    "recipe[chefsen::environment]"
+  ]
+}
