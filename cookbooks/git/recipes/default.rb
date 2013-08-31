@@ -20,7 +20,7 @@ directory node[:git][:configdir]
 #     require => File[$git::config::credentialhelper]
 #   }
 
-template "#{$home}/.gitignore" do
+template "#{node[:git][:configdir]}/gitignore" do
   mode 0644
   source "gitignore.erb"
   action :create_if_missing
