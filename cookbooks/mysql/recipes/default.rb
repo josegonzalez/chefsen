@@ -7,6 +7,7 @@ end
 [ node[:mysql][:configdir], node[:mysql][:datadir] , node[:mysql][:logdir] ].each do |dir|
   recursive_directories [ dir ] do
     owner node[:current_user]
+    group node[:current_group]
     recursive true
   end
 end
