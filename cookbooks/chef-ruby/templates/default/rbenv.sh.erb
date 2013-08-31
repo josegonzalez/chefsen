@@ -1,0 +1,7 @@
+# Configure and activate rbenv. You know, for rubies.
+
+export RBENV_ROOT=<%= @rbenv_root %>
+
+export PATH=<%= @rbenv_root %>/bin:<%= @rbenv_root %>/plugins/ruby-build/bin:$PATH
+
+eval "$(rbenv init -)"

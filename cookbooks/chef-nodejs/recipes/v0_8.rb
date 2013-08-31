@@ -1,0 +1,1 @@
+include_recipe 'chef-nodejs::v0_8_23'
