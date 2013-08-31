@@ -1,5 +1,7 @@
 action :install do
   $user = new_resource.user || node[:current_user]
+  $group = new_resource.group || node[:current_group]
+
   remote_file "#{Chef::Config[:file_cache_path]}/#{new_resource.name}.zip" do
     checksum new_resource.checksum
     source new_resource.source
@@ -7,7 +9,7 @@ action :install do
   end
 
   execute "set proper permissions on #{new_resource.name}.zip" do
-    command "sudo chown #{$user}:staff #{Chef::Config[:file_cache_path]}/#{new_resource.name}.zip"
+    command "sudo chown #{$user}:${group} #{Chef::Config[:file_cache_path]}/#{new_resource.name}.zip"
     cwd "/Applications"
     not_if { ::File.directory?("/Applications/#{new_resource.name}") }
   end
